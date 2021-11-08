@@ -18,7 +18,7 @@ const AdminLogin = (props) => {
       email: login.email,
       password: login.password,
     });
-    if (result && result.error)
+    if (result.error)
       dispatch(
         UserActions.onChangeLogin([
           { element: "error", value: result.error.message },
