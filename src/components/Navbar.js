@@ -1,13 +1,18 @@
 import React from "react";
+import { authed, logout } from "../httpServices/user";
 
 const NavBar = () => {
+  const onLogout = () => {
+    logout();
+    window.location.reload();
+  };
   return (
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a className="navbar-brand" href="/">
         Shopping Brand
       </a>
       <button
-        class="navbar-toggler"
+        className="navbar-toggler"
         type="button"
         data-toggle="collapse"
         data-target="#navbarTogglerDemo02"
@@ -15,25 +20,34 @@ const NavBar = () => {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon"></span>
       </button>
-
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">
+      <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li className="nav-item active">
+            <a className="nav-link" href="/categories">
               Categories
             </a>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="#">
+          <li className="nav-item active">
+            <a className="nav-link" href="/products">
               Products
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              Login
-            </a>
+          <li className="nav-item">
+            {authed() ? (
+              <div
+                className="nav-link"
+                style={{ cursor: "pointer" }}
+                onClick={() => onLogout()}
+              >
+                Logout
+              </div>
+            ) : (
+              <a href="/login" className="nav-link">
+                Login
+              </a>
+            )}
           </li>
         </ul>
       </div>
