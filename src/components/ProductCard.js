@@ -15,8 +15,8 @@ const ProductCard = ({ item }) => {
       <div className="card-body">
         <h5 className="card-title">{item.product_name}</h5>
         <p className="card-text">السعر : {item.price}</p>
-        <a href="/products" className="btn btn-primary">
-          Go to Product
+        <a href={`/product/${item._id}`} className="btn btn-primary">
+          اذهب الى المنتج
         </a>
       </div>
     </div>

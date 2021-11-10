@@ -10,5 +10,10 @@
 export const onChangeProducts = (state, action) => {
   state.products = action.payload;
 };
-const exports = { onChangeProducts };
+export const onSelectProduct = (state, action) => {
+  state.product = state.products?.find(
+    (item) => item._id === action.payload.id
+  );
+};
+const exports = { onChangeProducts, onSelectProduct };
 export default exports;

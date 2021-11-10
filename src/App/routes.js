@@ -2,6 +2,7 @@ import { Route, Redirect } from "react-router-dom";
 import { authed } from "../httpServices/user";
 import AdminLogin from "../pages/AdminLogin";
 import Categories from "../pages/Categories";
+import Product from "../pages/Product";
 import Products from "../pages/Products";
 const routes = [
   {
@@ -13,7 +14,6 @@ const routes = [
         exact
         render={(props) => {
           if (!authed()) return <AdminLogin {...props} />;
-          else return <Redirect to="/products" />;
         }}
       />
     ),
@@ -45,8 +45,17 @@ const routes = [
     ),
   },
   {
-    route: "/redirect",
-    Route: <Redirect key="redirect" exact to="/login" />,
+    route: "/product/:id",
+    Route: (
+      <Route
+        path="/product/:id"
+        key="prod"
+        render={(props) => {
+          if (authed()) return <Product {...props} />;
+          else return <Redirect to="/login" />;
+        }}
+      />
+    ),
   },
 ];
 export default routes;
